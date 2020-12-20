@@ -26,7 +26,7 @@ int main(int argc, char **argv)
   {
     gettimeofday(&start, NULL);
     sprintf(ptr, "%ld", start.tv_usec);
-    execvp(argv[1], &argv[2]);
+    execvp(argv[1], &argv[1]);
   }
   else if (pid > 0)
   {
