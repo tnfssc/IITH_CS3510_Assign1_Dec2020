@@ -10,5 +10,4 @@ This program creates a child process. It calculates the time it took for the chi
 ---
 ## Usage
 - Compile using `gcc Asgn1-ES18BTECH11016.c -lrt`
-- Execute the program using `./a.out <command>` e.g. `./a.out ls`
-- Note that ./a.out accepts only one argument. i.e. `./a.out ls` works, while `./a.out ls -l` and `./a.out "ls -l"` do not work
+- Execute the program using `./a.out <command> <args>` e.g. `./a.out ls -l -a`
