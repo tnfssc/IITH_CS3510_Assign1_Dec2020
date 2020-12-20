@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-  const int SIZE = 2048;
+  const int SIZE = 2048; // 2 kilobytes
   if (argc < 2) // If there are too few arguments, show error
   {
     printf("Invalid arguments! Look at README for instructions.\n");
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
   }
   const char *shared_mem_name = "shm"; 
   int fd = shm_open(shared_mem_name, O_CREAT | O_RDWR, 0666); // Open shared memory segment
-  ftruncate(fd, SIZE);
+  ftruncate(fd, SIZE); // Reducing the size of the memory segment
   void *ptr = mmap(0, SIZE, PROT_WRITE, MAP_SHARED, fd, 0); // Mapping `fd` to pointer
   struct timeval start, end;
 
@@ -27,6 +27,8 @@ int main(int argc, char **argv)
     gettimeofday(&start, NULL); // Write current time to `start`
     sprintf(ptr, "%ld", start.tv_usec); // Storing `start` epoch time as string in `ptr` which maps to the shared memory `fd`
     execvp(argv[1], &argv[1]); // Executing given command with given arguments
+    printf("Execution failed!"); // If execvp fails
+    _exit(1);
   }
   else if (pid > 0) // Parent process
   {
